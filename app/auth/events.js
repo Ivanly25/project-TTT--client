@@ -39,11 +39,19 @@ const onCreateGame = function () {
     .then(ui.onCreateGameSuccess)
     .catch(ui.onCreateGameFailure)
 }
-const onUpdateGame = function (event) {
-  const move = event.target
-  console.log(move)
+// start player at x
+let currentPlayer = 'x'
+const onUpdateGame = (event) => {
+  (event).preventDefault()
+  console.log('click')
+  const board = $(event.target)
+  board.text(currentPlayer)
+  currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
+  // const move = $(event.target)
+  console.log(board.currentPlayer)
+  // $('#update-game').reset()
+  console.log(event.game.cells)
 }
-
 module.exports = {
   onSignUp,
   onSignIn,

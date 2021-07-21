@@ -1,13 +1,17 @@
 #!/bin/bash
 
-API="https://tic-tac-toe-api-development.herokuapp.com/games"
-URL_PATH="/games"
-
-curl "${API}${URL_PATH}" \
+curl "https://tic-tac-toe-api-development.herokuapp.com/games/" + ${ID} \
   --include \
-  --request POST \
+  --request PATCH \
   --header "Content-Type: application/json" \
-  --header "Authorization: Bearer ${TOKEN}" \
-  --data '{}'
-
+  --header "Authorization: Bearer ${TOKEN}"
+  --data '{
+    "game": {
+      "cells": {
+        "index": "'"${INDEX}"'",
+        "value": "'"${VALUE}"'"
+      },
+      "over": "'"${OVER}"'"
+    }
+  }'
 echo
