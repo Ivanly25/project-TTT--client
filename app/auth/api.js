@@ -1,5 +1,5 @@
 'use strict'
-// const { data } = require('jquery')
+// const { data } = require('jquery')≠≠
 const store = require('./store')
 const config = require('./../config')
 const signUp = function (data) {
@@ -10,6 +10,7 @@ const signUp = function (data) {
     data: data
   })
 }
+// sign in
 const signIn = function (data) {
   console.log(data)
   return $.ajax({
@@ -18,17 +19,17 @@ const signIn = function (data) {
     data
   })
 }
-
+// sign out
 const signOut = function () {
   return $.ajax({
-    url: config.apiUrl +
-      '/sign-out',
+    url: config.apiUrl + '/sign-out',
     method: 'DELETE',
     headers: {
       Authorization: 'Bearer ' + store.token
     }
   })
 }
+// create game
 const createGame = function () {
   return $.ajax({
     url: config.apiUrl + '/games',
@@ -39,6 +40,7 @@ const createGame = function () {
   })
 }
 // eslint-disable-next-line no-undef
+// update game
 const updateGame = function () {
   return $.ajax({
     url: config.apiUrl + '/games/' + 'store.game._id',

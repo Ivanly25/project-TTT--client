@@ -19,12 +19,15 @@ const onSignInSuccess = (response) => {
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#sign-out').show()
-  $('#board').show()
+  $('#board').hide()
 }
 const onSignInFailure = () => {
   $('#message').text('Sign in failure')
   $('#sign-in').trigger('reset')
 }
+// hide sign out,
+// show sign in and sign up
+// when sign out is successful
 const onSignOutSuccess = (response) => {
   $('#message').text('Thank you for signing out, play again soon!')
   $('#sign-in').show()
@@ -34,8 +37,11 @@ const onSignOutSuccess = (response) => {
 const onSignOutFailure = () => {
   $('#message').text('Tic Tac Toe Sign out failure')
 }
+// send message when create game success
+// hide sign up and in
+// show board
 const onCreateGameSuccess = (response) => {
-  $('#message').text('Click on the board where you want to place your X or O').css('padding-top', '30px')
+  $('#message').text('Click on the board where you want to place your X or O').css('padding-top', '100px')
   $('#board').show()
   $('#sign-in').hide()
   $('#sign-up').hide()
@@ -54,7 +60,8 @@ const onUpdateGameSuccess = (response) => {
   store.game = response.game
   console.log(store.game)
   $('#message').text('You won!')
-  $('#update-game')
+  $('#board').trigger('reset')
+  $('#board').show()
 }
 const onUpdateGameFailure = () => {
   $('#message').text('update game failed')

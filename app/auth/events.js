@@ -27,10 +27,10 @@ const onSignIn = function (event) {
     .then(ui.onSignInSuccess)
     .catch(ui.onSignInFailure)
 }
-const onSignOut = function () {
+const onSignOut = function (event) {
   api.signOut()
-    .then(ui.signOutSuccess)
-    .catch(ui.signOutFailure)
+    .then(ui.onSignOutSuccess)
+    .catch(ui.onSignOutFailure)
 }
 const onCreateGame = function () {
   // handle successful api call with .then
@@ -51,6 +51,7 @@ const onUpdateGame = (event) => {
   console.log(board.currentPlayer)
   // $('#update-game').reset()
   console.log(event.game.cells)
+  console.log(currentPlayer.event)
 }
 module.exports = {
   onSignUp,

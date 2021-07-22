@@ -40,6 +40,7 @@ button{
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   padding-top: 5px;
   border-radius: 8px;
+  margin-right: auto;
 
 }
 p {
@@ -48,4 +49,17 @@ p {
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
   text-align: center;
   position: relative;
+}
+#sign-in{
+ background-color: #FFFF99;
+ padding-bottom: 20px;
+}
+
+h3{
+   padding: 5px;
+    color: #cd5c5c;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 60px;
+    background:	#FFFF99;
 }
