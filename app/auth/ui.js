@@ -5,7 +5,7 @@ const onSignUpSuccess = (response) => {
   $('#message').text(`Thank you for signing up ${response.user.email}`)
   console.log(response)
   $('#sign-up').trigger('reset')
-  $('#board').hide()
+  $('.board').hide()
 }
 const onSignUpFailure = () => {
   $('#message').text('Sign up failure')
@@ -19,7 +19,7 @@ const onSignInSuccess = (response) => {
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#sign-out').show()
-  $('#board').hide()
+  $('.board').hide()
 }
 const onSignInFailure = () => {
   $('#message').text('Sign in failure')
@@ -42,7 +42,7 @@ const onSignOutFailure = () => {
 // show board
 const onCreateGameSuccess = (response) => {
   $('#message').text('Click on the board where you want to place your X or O').css('padding-top', '100px')
-  $('#board').show()
+  $('.board').show()
   $('#sign-in').hide()
   $('#sign-up').hide()
   store.game = response.game
@@ -52,7 +52,7 @@ const onCreateGameSuccess = (response) => {
 const onUpdateGameSuccess = (response) => {
   console.log(response)
   $('#message').text('update game success')
-  $('#board').show()
+  $('.board').show()
   $('#sign-in').hide()
   $('#sign-up').hide()
   response.game.cells.forEach(function (val, i) {
@@ -60,8 +60,8 @@ const onUpdateGameSuccess = (response) => {
   store.game = response.game
   console.log(store.game)
   $('#message').text('You won!')
-  $('#board').trigger('reset')
-  $('#board').show()
+  $('.board').trigger('reset')
+  $('.board').show()
 }
 const onUpdateGameFailure = () => {
   $('#message').text('update game failed')

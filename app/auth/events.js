@@ -2,6 +2,7 @@
 const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('./../../lib/get-form-fields')
+// const { data } = require('jquery')
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -42,16 +43,20 @@ const onCreateGame = function () {
 // start player at x
 let currentPlayer = 'x'
 const onUpdateGame = (event) => {
-  (event).preventDefault()
+  event.preventDefault()
   console.log('click')
-  const board = $(event.target)
-  board.text(currentPlayer)
+  const boardClicked = $(event.target)
+  boardClicked.text(currentPlayer)
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
   // const move = $(event.target)
-  console.log(board.currentPlayer)
+  console.log(boardClicked.currentPlayer)
   // $('#update-game').reset()
-  console.log(event.game.cells)
-  console.log(currentPlayer.event)
+  console.log(event.game.index)
+  console.log(currentPlayer.event.target)
+
+  api.updateGame(currentPlayer)
+    .then(ui.onUpdateGameSuccess)
+    .catch(ui.onUpdateGameFailure)
 }
 module.exports = {
   onSignUp,
