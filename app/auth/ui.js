@@ -6,6 +6,7 @@ const onSignUpSuccess = (response) => {
   console.log(response)
   $('#sign-up').trigger('reset')
   $('.board').hide()
+  $('#onUpdateGame').hide()
 }
 const onSignUpFailure = () => {
   $('#message').text('Sign up failure')
@@ -45,16 +46,19 @@ const onCreateGameSuccess = (response) => {
   $('.board').show()
   $('#sign-in').hide()
   $('#sign-up').hide()
+  $('#update-game').show()
   store.game = response.game
   console.log(response)
   console.log(store.game)
 }
 const onUpdateGameSuccess = (response) => {
-  console.log(response)
+  // console.log(response)
+  $('#onUpdateGame').trigger('reset')
   $('#message').text('update game success')
   $('.board').show()
   $('#sign-in').hide()
   $('#sign-up').hide()
+  $('#update-game').show()
   response.game.cells.forEach(function (val, i) {
   })
   store.game = response.game
@@ -62,6 +66,11 @@ const onUpdateGameSuccess = (response) => {
   $('#message').text('You won!')
   $('.board').trigger('reset')
   $('.board').show()
+  $('#sign-in').hide()
+  $('#sign-up').hide()
+  console.log(response)
+  $('.board').show()
+  $('#create-game').show()
 }
 const onUpdateGameFailure = () => {
   $('#message').text('update game failed')

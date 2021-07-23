@@ -46,14 +46,12 @@ const onUpdateGame = (event) => {
   event.preventDefault()
   console.log('click')
   const boardClicked = $(event.target)
+  if (boardClicked.text()) return
   boardClicked.text(currentPlayer)
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
   // const move = $(event.target)
-  console.log(boardClicked.currentPlayer)
-  // $('#update-game').reset()
-  console.log(event.game.index)
-  console.log(currentPlayer.event.target)
-
+  console.log(event.game.Index)
+  // console.log(currentPlayer.event.target)
   api.updateGame(currentPlayer)
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
