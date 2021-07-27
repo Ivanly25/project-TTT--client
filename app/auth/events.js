@@ -2,6 +2,7 @@
 const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('./../../lib/get-form-fields')
+const store = require('./store')
 // const { data } = require('jquery')
 
 const onSignUp = function (event) {
@@ -46,20 +47,62 @@ const onUpdateGame = (event) => {
   event.preventDefault()
   console.log('click')
   const boardClicked = $(event.target)
+  store.gameIndex = $(boardClicked).data('cell-index')
+  console.log(store.game.over)
+  store.currentPlayer = currentPlayer
+  if (store.game.over) return
+  console.log(currentPlayer + 'wins!')
   if (boardClicked.text()) return
   boardClicked.text(currentPlayer)
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
-  // const move = $(event.target)
-  console.log(event.game.Index)
-  // console.log(currentPlayer.event.target)
-  api.updateGame(currentPlayer)
+  store.game.over = checkWin()
+  api.updateGame()
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
 }
+const checkWin = () => {
+  const cells = store.game.cells
+  if (cells[0] === cells[1] && cells[0] === cells[2] && cells[0] !== '') {
+    store.winner = currentPlayer
+    return true
+  }
+  if (cells[3] === cells[4] && cells[3] === cells[5] && cells[3] !== '') {
+    store.winner = currentPlayer
+    return true
+  }
+  if (cells[6] === cells[7] && cells[6] === cells[8] && cells[6] !== '') {
+    store.winner = currentPlayer
+    return true
+  }
+  if (cells[0] === cells[3] && cells[0] === cells[6] && cells[0] !== '') {
+    store.winner = currentPlayer
+    return true
+  }
+  if (cells[1] === cells[4] && cells[1] === cells[7] && cells[1] !== '') {
+    store.winner = currentPlayer
+    return true
+  }
+  if (cells[2] === cells[5] && cells[2] === cells[8] && cells[2] !== '') {
+    store.winner = currentPlayer
+    return true
+  }
+  if (cells[0] === cells[4] && cells[0] === cells[8] && cells[0] !== '') {
+    store.winner = currentPlayer
+    return true
+  }
+  if (cells[2] === cells[4] && cells[2] === cells[6] && cells[2] !== '') {
+    store.winner = currentPlayer
+    return true
+  }
+
+  return false
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
   onCreateGame,
-  onUpdateGame
+  onUpdateGame,
+  checkWin
 }

@@ -50,30 +50,20 @@ const onCreateGameSuccess = (response) => {
   store.game = response.game
   console.log(response)
   console.log(store.game)
+  $('.cell').text('')
 }
 const onUpdateGameSuccess = (response) => {
   // console.log(response)
-  $('#onUpdateGame').trigger('reset')
   $('#message').text('update game success')
-  $('.board').show()
-  $('#sign-in').hide()
-  $('#sign-up').hide()
-  $('#update-game').show()
-  response.game.cells.forEach(function (val, i) {
-  })
+
   store.game = response.game
   console.log(store.game)
-  $('#message').text('You won!')
-  $('.board').trigger('reset')
-  $('.board').show()
-  $('#sign-in').hide()
-  $('#sign-up').hide()
-  console.log(response)
-  $('.board').show()
-  $('#create-game').show()
 }
 const onUpdateGameFailure = () => {
   $('#message').text('update game failed')
+}
+const checkWin = (response) => {
+  $('#message').text('game over')
 }
 
 module.exports = {
@@ -85,5 +75,6 @@ module.exports = {
   onSignOutSuccess,
   onCreateGameSuccess,
   onUpdateGameSuccess,
-  onUpdateGameFailure
+  onUpdateGameFailure,
+  checkWin
 }
