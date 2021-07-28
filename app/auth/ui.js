@@ -55,15 +55,21 @@ const onCreateGameSuccess = (response) => {
 const onUpdateGameSuccess = (response) => {
   // console.log(response)
   $('#message').text('update game success')
-
+  $('#sign-in').hide()
+  $('#sign-up').hide()
+  $('#update-game').show()
   store.game = response.game
   console.log(store.game)
+  console.log(response)
+  // console.log(checkWin)
 }
 const onUpdateGameFailure = () => {
   $('#message').text('update game failed')
 }
 const checkWin = (response) => {
-  $('#message').text('game over')
+  // if (store.game.over = true ({ $('#message').text('game over')
+// })
+// )}
 }
 
 module.exports = {

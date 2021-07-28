@@ -37,6 +37,8 @@ const onSignOut = function (event) {
 const onCreateGame = function () {
   // handle successful api call with .then
   // handle failed api call with .catch
+  event.preventDefault()
+  currentPlayer = 'x'
   api.createGame()
     .then(ui.onCreateGameSuccess)
     .catch(ui.onCreateGameFailure)
@@ -45,15 +47,16 @@ const onCreateGame = function () {
 let currentPlayer = 'x'
 const onUpdateGame = (event) => {
   event.preventDefault()
-  console.log('click')
   const boardClicked = $(event.target)
-  store.gameIndex = $(boardClicked).data('cell-index')
+  const index = $(boardClicked).data('cell-index')
+  store.gameIndex = index
   console.log(store.game.over)
   store.currentPlayer = currentPlayer
   if (store.game.over) return
-  console.log(currentPlayer + 'wins!')
-  if (boardClicked.text()) return
+  // if statement and return
+  if ($(boardClicked).text()) return
   boardClicked.text(currentPlayer)
+  store.game.cells[index] = currentPlayer
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
   store.game.over = checkWin()
   api.updateGame()
@@ -62,6 +65,7 @@ const onUpdateGame = (event) => {
 }
 const checkWin = () => {
   const cells = store.game.cells
+
   if (cells[0] === cells[1] && cells[0] === cells[2] && cells[0] !== '') {
     store.winner = currentPlayer
     return true
@@ -94,6 +98,7 @@ const checkWin = () => {
     store.winner = currentPlayer
     return true
   }
+  // if (cells[0] === cells[1] && cells[2]&& cells[3])
 
   return false
 }

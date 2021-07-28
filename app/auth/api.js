@@ -41,7 +41,7 @@ const createGame = function () {
 }
 // eslint-disable-next-line no-undef
 // update game
-const updateGame = function () {
+const updateGame = function (data) {
   console.log(store)
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game._id,
