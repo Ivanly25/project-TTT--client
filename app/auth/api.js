@@ -30,7 +30,7 @@ const signOut = function () {
   })
 }
 // create game
-const createGame = function () {
+const createGame = function (data) {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
@@ -41,22 +41,13 @@ const createGame = function () {
 }
 // eslint-disable-next-line no-undef
 // update game
-const updateGame = function (data) {
-  console.log(store)
+const updateGame = function (game) {
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game._id,
     method: 'PATCH',
+    data: game,
     headers: {
       Authorization: 'Bearer ' + store.token
-    },
-    data: {
-      game: {
-        cell: {
-          index: store.gameIndex,
-          value: store.currentPlayer
-        },
-        over: store.game.over
-      }
     }
   })
 }

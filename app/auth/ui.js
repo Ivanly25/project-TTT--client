@@ -42,34 +42,40 @@ const onSignOutFailure = () => {
 // hide sign up and in
 // show board
 const onCreateGameSuccess = (response) => {
+  $('.board').trigger('reset')
   $('#message').text('Click on the board where you want to place your X or O').css('padding-top', '100px')
   $('.board').show()
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#update-game').show()
   store.game = response.game
-  console.log(response)
-  console.log(store.game)
-  $('.cell').text('')
+  $('.cell').html('')
+}
+const onCreateGameFailure = () => {
+  $('#message').text('Tic Tac Toe start up failure')
 }
 const onUpdateGameSuccess = (response) => {
+  const boardClicked = $('.cell')
+  response.game.cells.forEach(function (val, i) {
+    boardClicked[i].innerText = val
+  })
   // console.log(response)
-  $('#message').text('update game success')
+  // const cells = store.game.cells
+  // $('#message').text('update game success')
   $('#sign-in').hide()
   $('#sign-up').hide()
   $('#update-game').show()
-  store.game = response.game
-  console.log(store.game)
-  console.log(response)
-  // console.log(checkWin)
+  // console.log(store.game)
+  // if (store.game.over) {
+  //   $('#message').text(`'${store.winner}' won the game`)
+  // } else if (
+  //   cells.every(cell => cell !== '')) {
+  //   store.winner = 'nobody'
+  //   $('#message').text('nobody wins try again')
+  // return true
 }
 const onUpdateGameFailure = () => {
   $('#message').text('update game failed')
-}
-const checkWin = (response) => {
-  // if (store.game.over = true ({ $('#message').text('game over')
-// })
-// )}
 }
 
 module.exports = {
@@ -80,7 +86,7 @@ module.exports = {
   onSignOutFailure,
   onSignOutSuccess,
   onCreateGameSuccess,
+  onCreateGameFailure,
   onUpdateGameSuccess,
-  onUpdateGameFailure,
-  checkWin
+  onUpdateGameFailure
 }
