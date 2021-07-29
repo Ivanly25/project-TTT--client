@@ -89,55 +89,53 @@ const checkWin = () => {
   const cells = store.game.cells
   const player = turn ? 'x' : 'o'
   // store.winner = currentPlayer
-  if (cells[0] === cells[1] && cells[0] === cells[2] && cells[0] !== '') {
-    store.winner = player
+  if (cells[0] === cells[1] && cells[1] === cells[2] && cells[0] !== '') {
+    // store.winner = player
     $('#message').text(`Player ${player} has won!`)
     return (store.game.over = true)
   }
-  if (cells[3] === cells[4] && cells[3] === cells[5] && cells[3] !== '') {
-    store.winner = player
+  if (cells[3] === cells[4] && cells[4] === cells[5] && cells[3] !== '') {
+    // store.winner = player
     $('#message').text(`Player ${player} has won!`)
     return (store.game.over = true)
   }
-  if (cells[6] === cells[7] && cells[6] === cells[8] && cells[6] !== '') {
-    store.winner = player
+  if (cells[6] === cells[7] && cells[7] === cells[8] && cells[6] !== '') {
+    // store.winner = player
     $('#message').text(`Player ${player} has won!`)
     return (store.game.over = true)
   }
-  if (cells[0] === cells[3] && cells[0] === cells[6] && cells[0] !== '') {
-    store.winner = player
+  if (cells[0] === cells[3] && cells[3] === cells[6] && cells[0] !== '') {
+    // store.winner = player
     $('#message').text(`Player ${player} has won!`)
     return (store.game.over = true)
   }
-  if (cells[1] === cells[4] && cells[1] === cells[7] && cells[1] !== '') {
-    store.winner = player
+  if (cells[1] === cells[4] && cells[4] === cells[7] && cells[1] !== '') {
+    // store.winner = player
     $('#message').text(`Player ${player} has won!`)
     return (store.game.over = true)
   }
-  if (cells[2] === cells[5] && cells[2] === cells[8] && cells[2] !== '') {
-    store.winner = player
+  if (cells[2] === cells[5] && cells[5] === cells[8] && cells[2] !== '') {
+   // store.winner = player
     $('#message').text(`Player ${player} has won!`)
     return (store.game.over = true)
   }
-  if (cells[0] === cells[4] && cells[0] === cells[8] && cells[0] !== '') {
-    store.winner = player
+  if (cells[0] === cells[4] && cells[4] === cells[8] && cells[0] !== '') {
+    // store.winner = player
     $('#message').text(`Player ${player} has won!`)
     return (store.game.over = true)
   }
-  if (cells[2] === cells[4] && cells[2] === cells[6] && cells[2] !== '') {
-    store.winner = player
+  if (cells[2] === cells[4] && cells[4] === cells[6] && cells[2] !== '') {
+    // store.winner = player
     $('#message').text(`Player ${player} has won!`)
     return (store.game.over = true)
   }
-  if (
-    cells.every(cell => cell !== '')) {
-    store.winner = 'nobody'
-    $('#message').text('nobody wins try again')
+  if (!cells.includes('')) {
+     // store.winner = 'nobody'
+    $('#message').text('draw try again !')
     return (store.game.over = true)
   }
   store.game.over = false
-  }
-
+}
 module.exports = {
   onSignUp,
   onSignIn,
